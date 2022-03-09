@@ -18,6 +18,27 @@ let painting = false
 let eraserEnabled = false
 let last = [0, 0]
 
+const colors = {
+  black: '#000',
+  red: '#ff1a40',
+  blue: '#1a8cff',
+  green: '#2bd965',
+  yellow: '#ffdd33',
+}
+
+const colorPicker = document.querySelector('.colorPicker')
+colorPicker.addEventListener('click', (e) => {
+  if (e.target !== e.currentTarget) {
+    const oldPicked = document.querySelector('.colorPicker > li.active')
+    if (oldPicked) oldPicked.classList.remove('active')
+    e.target.classList.add('active')
+    const classname = e.target.className.replace('active', '').trim()
+    const pickedColor = colors[classname]
+    ctx.strokeStyle = pickedColor
+    ctx.fillStyle = pickedColor
+  }
+})
+
 pen.onclick = () => {
   eraserEnabled = false
   pen.classList.add('active')
