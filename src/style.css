@@ -7,3 +7,26 @@
 body {
   overflow: hidden;
 }
+
+.icon {
+  width: 1.6em;
+  height: 1.6em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+  margin: 0 8px;
+}
+
+.tools {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+}
+
+svg.active {
+  fill: #40b87f;
+  transform: scale(1.2);
+  transition: all 0.3s;
+}
