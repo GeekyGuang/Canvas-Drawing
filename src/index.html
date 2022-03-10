@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Canvas画板</title>
   <link rel="stylesheet" href="./style.css">
-  <script src="//at.alicdn.com/t/font_3233375_8m7bxk14bq7.js"></script>
+  <script src="//at.alicdn.com/t/font_3233375_8he9npewdek.js"></script>
 </head>
 
 <body>
@@ -19,6 +19,12 @@
     <svg class="icon" aria-hidden="true" id="eraser">
       <use xlink:href="#icon-eraser"></use>
     </svg>
+    <div class="thickness">
+      <div class="circle-wrapper">
+        <div class="circle"></div>
+      </div>
+      <div class="number">3</div>
+    </div>
     <svg class="icon" aria-hidden="true" id="delete">
       <use xlink:href="#icon-delete"></use>
     </svg>
@@ -33,6 +39,46 @@
     <li class="green"></li>
     <li class="yellow"></li>
   </ul>
+  <div class="thickness-picker-wrapper">
+    <div class="thickness-picker">
+      <svg class="icon" aria-hidden="true" id="close">
+        <use xlink:href="#icon-close"></use>
+      </svg>
+      <h3>笔画粗细</h3>
+      <ul>
+        <li>
+          <div class="circle-wrapper">
+            <div class="circle"></div>
+          </div>
+          <div class="number">1</div>
+        </li>
+        <li>
+          <div class="circle-wrapper">
+            <div class="circle"></div>
+          </div>
+          <div class="number">2</div>
+        </li>
+        <li class="active">
+          <div class="circle-wrapper">
+            <div class="circle"></div>
+          </div>
+          <div class="number">3</div>
+        </li>
+        <li>
+          <div class="circle-wrapper">
+            <div class="circle"></div>
+          </div>
+          <div class="number">4</div>
+        </li>
+        <li>
+          <div class="circle-wrapper">
+            <div class="circle"></div>
+          </div>
+          <div class="number">5</div>
+        </li>
+      </ul>
+    </div>
+  </div>
 
   <script type="module" src="./main.js"></script>
 </body>

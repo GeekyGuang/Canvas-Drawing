@@ -14,7 +14,6 @@ body {
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
-  margin: 0 8px;
 }
 
 .tools {
@@ -22,8 +21,11 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px;
-  padding-bottom: 8px;
+  height: 54px;
+  padding: 0 20px 8px 26px;
+  display: flex;
+  gap: 16px;
+  align-items: end;
 }
 
 svg.active {
@@ -32,15 +34,167 @@ svg.active {
   transition: all 0.3s;
 }
 
+.thickness {
+  width: 26px;
+  height: 33px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.thickness > .circle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.thickness > .circle-wrapper > .circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #000;
+}
+
+.thickness > .number {
+  line-height: 14px;
+  font-size: 14px;
+}
+
+.thickness-picker-wrapper.visible {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: transparent;
+  z-index: 10;
+}
+
+.thickness-picker-wrapper.visible > .thickness-picker {
+  position: absolute;
+  top: 20px;
+  left: 35px;
+  background: #fff;
+  height: 118px;
+  width: 300px;
+  padding: 24px;
+  border: 1px solid silver;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 500px) {
+  .thickness-picker-wrapper.visible > .thickness-picker {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.thickness-picker-wrapper.visible > .thickness-picker > #close {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  fill: #cecece;
+}
+
+.thickness-picker-wrapper.visible > .thickness-picker > #close:hover {
+  fill: #b5b5b5;
+}
+
+.thickness-picker > h3 {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.thickness-picker > ul {
+  list-style: none;
+  display: flex;
+  margin-top: 12px;
+  gap: 12px;
+  justify-content: space-around;
+}
+
+.thickness-picker > ul > li {
+  flex: 1;
+  height: 40px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+}
+
+.thickness-picker > ul > li::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  content: '';
+  display: block;
+}
+
+.thickness-picker > ul > li.active::before {
+  position: absolute;
+  content: '';
+  width: 70%;
+  transform: translateX(-50%);
+  bottom: -15px;
+  left: 50%;
+  border-bottom: 2px solid #1a9fff;
+  transition: all 0.3s;
+}
+
+.thickness-picker > ul > li > .circle-wrapper {
+  display: flex;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+.thickness-picker > ul > li > .circle-wrapper > .circle {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #000;
+}
+.thickness-picker > ul > li:nth-of-type(2) > .circle-wrapper > .circle {
+  width: 7px;
+  height: 7px;
+}
+.thickness-picker > ul > li:nth-of-type(3) > .circle-wrapper > .circle {
+  width: 10px;
+  height: 10px;
+}
+.thickness-picker > ul > li:nth-of-type(4) > .circle-wrapper > .circle {
+  width: 13px;
+  height: 13px;
+}
+.thickness-picker > ul > li:nth-of-type(5) > .circle-wrapper > .circle {
+  width: 16px;
+  height: 16px;
+}
+
+.thickness-picker > ul > li > .number {
+  line-height: 16px;
+  font-size: 16px;
+}
+
 .colorPicker {
   position: fixed;
   top: 50px;
   left: 0px;
   list-style: none;
   padding: 12px 8px 8px 26px;
+  z-index: 1;
 }
 
 .colorPicker > li {
+  z-index: 1;
   width: 20px;
   height: 20px;
   border: 1px solid silver;

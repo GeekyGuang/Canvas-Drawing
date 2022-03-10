@@ -11,9 +11,7 @@ const eraser = document.querySelector('#eraser')
 const deleteBtn = document.querySelector('#delete')
 const save = document.querySelector('#save')
 
-let lineWidth = 6
-
-ctx.lineWidth = lineWidth // 设置画线宽度
+ctx.lineWidth = 10 // 设置画线宽度
 ctx.lineCap = 'round' // 防止转折处断开
 
 let painting = false
@@ -77,6 +75,54 @@ save.onclick = () => {
   a.click()
 }
 
+const thicknessBtn = document.querySelector('.thickness')
+const thicknessPickerWrapper = document.querySelector(
+  '.thickness-picker-wrapper'
+)
+thicknessBtn.onclick = () => {
+  thicknessPickerWrapper.classList.add('visible')
+}
+
+thicknessPickerWrapper.onclick = (e) => {
+  if (e.target === e.currentTarget)
+    thicknessPickerWrapper.classList.remove('visible')
+}
+
+const closeBtn = document.querySelector('#close')
+closeBtn.onclick = () => {
+  thicknessPickerWrapper.classList.remove('visible')
+}
+
+const thicknessHash = {
+  1: 4,
+  2: 7,
+  3: 10,
+  4: 13,
+  5: 16,
+}
+
+const thicknessCircle = document.querySelector(
+  '.thickness > .circle-wrapper > .circle'
+)
+const thicknessNumber = document.querySelector('.thickness > .number')
+
+const thicknessPicker = document.querySelector('.thickness-picker > ul')
+thicknessPicker.onclick = (e) => {
+  if (e.target.nodeName === 'LI') {
+    const oldPicked = document.querySelector(
+      '.thickness-picker > ul > li.active'
+    )
+    oldPicked.classList.remove('active')
+    e.target.classList.add('active')
+
+    const num = e.target.innerText
+    ctx.lineWidth = thicknessHash[num]
+    thicknessCircle.style.width = thicknessHash[num] + 'px'
+    thicknessCircle.style.height = thicknessHash[num] + 'px'
+    thicknessNumber.innerText = num
+  }
+}
+
 // 画线函数
 function drawLine(lastX, lastY, newX, newY) {
   ctx.beginPath()
@@ -86,9 +132,9 @@ function drawLine(lastX, lastY, newX, newY) {
 }
 
 // 画圆
-function drawCircle(x, y, radius) {
+function drawCircle(x, y) {
   ctx.beginPath()
-  ctx.arc(x, y, radius, 0, 2 * Math.PI, true)
+  ctx.arc(x, y, ctx.lineWidth / 2, 0, 2 * Math.PI, true)
   ctx.fill()
 }
 
@@ -103,7 +149,7 @@ if (isTouchDevice) {
     if (eraserEnabled) {
       ctx.clearRect(x - 10, y - 10, 20, 20)
     } else {
-      drawCircle(x, y, lineWidth / 2)
+      drawCircle(x, y)
     }
   }
   canvas.ontouchmove = (e) => {
@@ -123,7 +169,7 @@ if (isTouchDevice) {
     if (eraserEnabled) {
       ctx.clearRect(e.clientX - 10, e.clientY - 10, 20, 20)
     } else {
-      drawCircle(e.clientX, e.clientY, lineWidth / 2)
+      drawCircle(e.clientX, e.clientY)
     }
   }
 
