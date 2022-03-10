@@ -4,6 +4,11 @@ const canvas = document.getElementById('canvas')
 canvas.width = document.documentElement.clientWidth
 canvas.height = document.documentElement.clientHeight
 
+window.onresize = () => {
+  canvas.width = document.documentElement.clientWidth
+  canvas.height = document.documentElement.clientHeight
+}
+
 const ctx = canvas.getContext('2d')
 
 const pen = document.querySelector('#pen')
