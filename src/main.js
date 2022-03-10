@@ -9,6 +9,7 @@ const ctx = canvas.getContext('2d')
 const pen = document.querySelector('#pen')
 const eraser = document.querySelector('#eraser')
 const deleteBtn = document.querySelector('#delete')
+const save = document.querySelector('#save')
 
 let lineWidth = 6
 
@@ -18,6 +19,15 @@ ctx.lineCap = 'round' // 防止转折处断开
 let painting = false
 let eraserEnabled = false
 let last = [0, 0]
+let pickedColor = '#000'
+
+const initBG = () => {
+  ctx.fillStyle = '#fff'
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
+  ctx.fillStyle = pickedColor
+}
+
+initBG()
 
 const colors = {
   black: '#000',
@@ -34,7 +44,7 @@ colorPicker.addEventListener('click', (e) => {
     if (oldPicked) oldPicked.classList.remove('active')
     e.target.classList.add('active')
     const classname = e.target.className.replace('active', '').trim()
-    const pickedColor = colors[classname]
+    pickedColor = colors[classname]
     ctx.strokeStyle = pickedColor
     ctx.fillStyle = pickedColor
   }
@@ -54,6 +64,17 @@ eraser.onclick = () => {
 
 deleteBtn.onclick = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
+  initBG()
+}
+
+save.onclick = () => {
+  const url = canvas.toDataURL('image/jpeg')
+  const a = document.createElement('a')
+  document.body.append(a)
+  a.href = url
+  a.download = 'my-drawing'
+  a.target = '_blank'
+  a.click()
 }
 
 // 画线函数
