@@ -45,7 +45,7 @@ svg.active {
   height: 20px;
   border: 1px solid silver;
   border-radius: 50%;
-  margin: 10px 0;
+  margin: 14px 0;
 }
 
 .colorPicker > li.active {
@@ -72,4 +72,9 @@ svg.active {
 
 .yellow {
   background: #ffdd33;
+}
+
+#delete:active,
+#save:active {
+  fill: #40b87f;
 }
