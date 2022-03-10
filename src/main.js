@@ -8,6 +8,7 @@ const ctx = canvas.getContext('2d')
 
 const pen = document.querySelector('#pen')
 const eraser = document.querySelector('#eraser')
+const deleteBtn = document.querySelector('#delete')
 
 let lineWidth = 6
 
@@ -49,6 +50,10 @@ eraser.onclick = () => {
   eraserEnabled = true
   pen.classList.remove('active')
   eraser.classList.add('active')
+}
+
+deleteBtn.onclick = () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
 }
 
 // 画线函数
